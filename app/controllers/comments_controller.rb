@@ -33,6 +33,16 @@ class CommentsController < ApplicationController
         @comment.destroy
     end
 
+    private
+    def set_comment
+      @comment = Comment.find(params[:id])
+    end
+
+    
+    def comment_params
+      params.require(:comment).permit(:name, :content, :video_game_id, :user_id)
+    end
+
 
 
 

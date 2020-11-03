@@ -7,7 +7,7 @@ class VideoGamesController < ApplicationController
           render json: VideoGameSerializer.new(@video_games)
         else
           render json: {
-            error: "You must be logged in to see video games"
+            error: "Please Try Again"
           }
         end
     end 
@@ -40,13 +40,24 @@ class VideoGamesController < ApplicationController
 
     def destroy
         if @video_game.destroy
-          render json: {message: "Video Game deleted."}, status: :ok
+          render json: {message: "Video Game erased."}, status: :ok
         else
           render json: {
-            error: "Something's not right"
+            error: "Something Went Wrong"
           }
         end
-      end
+    end
+
+    private
+    
+    def set_video_game
+      @video_game = VideoGame.find(params[:id])
+    end
+
+    
+    def video_game_params
+      params.require(:video_game).permit(:game_name, :game_genre, :game_rating, :game_platform, :description, :year_released, :user_id)
+    end
 
 
 

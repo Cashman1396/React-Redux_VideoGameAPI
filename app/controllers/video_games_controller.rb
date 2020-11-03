@@ -56,7 +56,7 @@ class VideoGamesController < ApplicationController
 
     
     def video_game_params
-      params.require(:video_game).permit(:game_name, :game_genre, :game_rating, :game_platform, :description, :year_released, :user_id)
+      params.require(:video_game).permit(:game_name, :game_genre, :image_url, :game_rating, :game_platform, :description, :year_released, :user_id)
     end
 
 
